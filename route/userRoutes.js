@@ -15,6 +15,4 @@ router.put("/SoftDeleteUser/:id", userController.SoftDeleteUser);
 
 router.get("/FilterUsers", userController.FilterUsers);
 
-router.get("/getUserFromSession", userController.getUserFromSession);
-
 module.exports = router;
