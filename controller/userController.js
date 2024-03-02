@@ -3,16 +3,16 @@ const Joi = require('joi');
 
 const validateUser = (userData) => {
     const schema = Joi.object({
-        username: Joi.string().min(3).max(20).alphanum(),
+        username: Joi.string().min(3).max(20),
         dateOfBirth: Joi.date(),
         age: Joi.number(),
-        religion: Joi.string().min(5).max(20).alphanum(),
-        skinColor: Joi.string().min(5).max(10).alphanum(),
-        country: Joi.string().max(50).alphanum(),
-        governorate: Joi.string().max(50).alphanum(),
-        hobby: Joi.string().max(50).alphanum(),
-        profession: Joi.string().max(50).alphanum(),
-        EducationDegree: Joi.string().max(50).alphanum(),
+        religion: Joi.string().min(5).max(20),
+        skinColor: Joi.string().min(5).max(10),
+        country: Joi.string().max(50),
+        governorate: Joi.string().max(50),
+        hobby: Joi.string().max(50),
+        profession: Joi.string().max(50),
+        EducationDegree: Joi.string().max(50),
     });
 
     return schema.validate(userData);
@@ -49,8 +49,7 @@ const FindUserById = async (req, res) => {
     const { id } = req.params;
     try {
         if (id) {
-            const userInfo = req.session.users;
-
+            const userInfo = req.session.users || {};
             if (userInfo && userInfo[id]) {
                 res.status(200).json({
                     message: 'The User Found From Session!',
